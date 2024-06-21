@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Health Tips Generator</title>
+</head>
+<body>
+    <h1>Generate Health Tips</h1>
+    <form id="tipForm">
+        <label for="role">Role:</label>
+        <select id="role" name="role">
+            <option value="guest">Guest</option>
+            <option value="admin">Admin</option>
+        </select><br><br>
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location"><br><br>
+        <button type="submit">Generate Tips</button>
+    </form>
+    <div id="result"></div>
+    
+    <script>
+        document.getElementById('tipForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            fetch('/generate', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultDiv = document.getElementById('result');
+                if (data.error) {
+                    resultDiv.textContent = data.error;
+                } else {
+                    resultDiv.innerHTML = `<h2>Health Tips for ${data.location}</h2><ul>${data.tips.map(tip => `<li>${tip}</li>`).join('')}</ul>`;
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
