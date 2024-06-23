@@ -3,8 +3,8 @@ from dotenv import load_dotenv
 import os
 import requests
 from policies import enforce_access_control
-from opal_client.data import DataUpdate
 import opal_client
+from opal_client.config import opal_client_config
 
 load_dotenv()
 
