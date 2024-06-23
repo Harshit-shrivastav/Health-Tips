@@ -1,9 +1,12 @@
 from opal_client.data.updater import DataUpdater
 
-data_source_url = "http://localhost:8000/data"
+# data source URL
+data_source_url = "http://localhost:7002/data"
 
+# DataUpdater instance
 data_updater = DataUpdater(data_source_url=data_source_url)
 
+# data to synchronize
 data_to_sync = {
     "roles": {
         "admin": ["view", "edit", "delete"],
@@ -11,4 +14,5 @@ data_to_sync = {
     }
 }
 
+# Synchronize the data
 data_updater.update_data(data_to_sync)
