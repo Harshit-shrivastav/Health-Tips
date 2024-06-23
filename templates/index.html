@@ -2,21 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Health Tips Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Generate Health Tips</h1>
-    <form id="tipForm">
-        <label for="role">Role:</label>
-        <select id="role" name="role">
-            <option value="guest">Guest</option>
-            <option value="admin">Admin</option>
-        </select><br><br>
-        <label for="location">Location:</label>
-        <input type="text" id="location" name="location"><br><br>
-        <button type="submit">Generate Tips</button>
-    </form>
-    <div id="result"></div>
+    <div class="container">
+        <h1>Health Tips Generator</h1>
+        <form id="tipForm">
+            <div class="form-group">
+                <label for="role">Role:</label>
+                <select id="role" name="role" class="form-control">
+                    <option value="guest">Guest</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" class="form-control" placeholder="Enter location">
+            </div>
+            <button type="submit" class="btn">Generate Tips</button>
+        </form>
+        <div id="result"></div>
+    </div>
     
     <script>
         document.getElementById('tipForm').addEventListener('submit', function(event) {
